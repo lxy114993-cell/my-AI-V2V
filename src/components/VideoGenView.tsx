@@ -97,23 +97,6 @@ export const VideoGenView: React.FC<VideoGenViewProps> = ({ onViewChange }) => {
           </div>
         </div>
 
-        {/* 动态强度 */}
-        <div className="space-y-3">
-          <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] px-1">动态强度</label>
-          <div className="flex gap-2 p-1 bg-slate-800 rounded-xl border border-white/5 text-white">
-            {['Low', 'Medium', 'High'].map((m) => (
-              <button
-                key={m}
-                onClick={() => setMotionIntensity(m)}
-                className={`flex-1 py-2 rounded-lg text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 ${motionIntensity === m ? 'bg-slate-700 text-primary shadow-sm' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                <Flame size={14} />
-                {m === 'Low' ? '低' : m === 'Medium' ? '中' : '高'}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* 视频比例 */}
         <div className="space-y-2">
           <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] px-1">画面比例</label>
@@ -124,7 +107,15 @@ export const VideoGenView: React.FC<VideoGenViewProps> = ({ onViewChange }) => {
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
-                  <Crop size={18} />
+                  {(() => {
+                    const currentAR = aspectRatios.find(ar => ar.label === aspectRatio);
+                    return currentAR ? (
+                      <div 
+                        className="border-2 border-primary rounded-[2px]" 
+                        style={{ width: currentAR.w/2.5, height: currentAR.h/2.5 }} 
+                      />
+                    ) : <Crop size={18} />;
+                  })()}
                 </div>
                 <div>
                   <span className="block text-[10px] text-slate-500 uppercase tracking-wider leading-none mb-0.5">当前比例</span>

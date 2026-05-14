@@ -28,7 +28,7 @@ export default function App() {
     switch (currentView) {
       case 'home': return <HomeView onRegister={() => setIsRegisterModalOpen(true)} />;
       case 'image-gen': return <ImageGenView onViewChange={setCurrentView} />;
-      case 'video-gen': return <VideoGenView />;
+      case 'video-gen': return <VideoGenView onViewChange={setCurrentView} />;
       case 'history': return <HistoryView />;
       case 'announcements': return <AnnouncementView />;
       case 'changelog': return <ChangelogView />;

@@ -200,7 +200,13 @@ export const TopNav: React.FC<TopNavProps> = ({ currentView, onViewChange, isReg
                           <Zap size={14} />
                           升级
                         </button>
-                        <button className="flex items-center justify-center gap-2 py-3 bg-surface border border-outline-variant rounded-xl text-xs font-black hover:bg-on-surface hover:text-surface transition-all">
+                        <button 
+                          onClick={() => {
+                            onViewChange('history');
+                            setShowProfileMenu(false);
+                          }}
+                          className="flex items-center justify-center gap-2 py-3 bg-surface border border-outline-variant rounded-xl text-xs font-black hover:bg-on-surface hover:text-white transition-all"
+                        >
                           <History size={14} />
                           使用详情
                         </button>
